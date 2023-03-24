@@ -29,6 +29,22 @@ h1:focus {
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
+
+#photogrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.photo-card {
+    max-width: 30%;
+    min-width: 20%;
+    flex: none;
+}
+
+.card-image {
+    cursor: pointer;
+}

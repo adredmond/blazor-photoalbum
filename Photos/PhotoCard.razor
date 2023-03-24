@@ -1,11 +1,35 @@
-﻿<div class="box">
-  <p>@Photo.Id</p>
-  <figure class="image is-64x64">
-    <img src="@Photo.ThumbnailUrl" />
-  </figure>
+﻿<PhotoModal Url="@Photo.Url" IsActive="showModal"/>
+
+<div class="card photo-card">
+  <header class="card-header">
+      <p class="card-header-title">@Photo.Title</p>
+  </header>
+  <div class="card-image" @onclick="@(e => showModal = true)">
+    <figure class="image is-128x128">
+      <img src="@Photo.ThumbnailUrl" />
+    </figure>
+  </div>
+  <div class="card-content">
+      <div class="content">
+          <p>Photo Id: @Photo.Id</p>
+          <p>Album Id: @Photo.AlbumId</p>
+      </div>
+  </div>
+</div>
+
+<div class="modal @(showModal ? "is-active" : "")">
+  <div class="modal-background" @onclick="@(() => showModal = false)"></div>
+  <div class="modal-content">
+    <figure class="image">
+      <img src="@Photo.Url" />
+    </figure>
+  </div>
+  <button class="modal-close is-large" aria-label="close" @onclick="@(() => showModal = false)"></button>
 </div>
 
 @code {
     [Parameter, EditorRequired]
     public Photo Photo { get; set; }
-}
+
+    private bool showModal;
+} 

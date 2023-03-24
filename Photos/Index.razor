@@ -19,7 +19,7 @@
 
 </div>
 @code {
-  public int AlbumId { get; set; }
+  public int AlbumId { get; set; } = 1;
 
   public IEnumerable<Photo> AlbumPhotos { get; set; } = Enumerable.Empty<Photo>();
 
@@ -27,4 +27,6 @@
   {
     AlbumPhotos = await _client.GetFromJsonAsync<IEnumerable<Photo>>($"https://jsonplaceholder.typicode.com/photos?albumId={AlbumId}");
   }
+
+  protected override async Task OnInitializedAsync() => await HandleAlbumChange();
 }

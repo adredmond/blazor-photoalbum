@@ -5,10 +5,12 @@
     <h3>No Photos found</h3> 
 }
 
+<div id="photogrid">
 @foreach (var photo in Photos)
 {
     <PhotoCard Photo="photo" />
 }
+</div>
 
 @code {
     [Parameter, EditorRequired]
