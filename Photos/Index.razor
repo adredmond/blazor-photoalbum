@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject HttpClient _client
+@using Microsoft.AspNetCore.Components.Forms
+
+<PageTitle>Photo Album Viewer</PageTitle>
+
+<div class="columns">
+  <div class="column is-one-quarter">
+    <label for="album-id-input" class="label">Select an Album to View</label>
+    <input id="album-id-input"
+           type="number"
+           class="input is-rounded"
+           @bind="AlbumId"
+           @bind:after="HandleAlbumChange"/>
+  </div>
+  <div class="column">
+    <PhotoGrid AlbumId="AlbumId" Photos="AlbumPhotos" />
+  </div>
+
+</div>
+@code {
+  public int AlbumId { get; set; }
+
+  public IEnumerable<Photo> AlbumPhotos { get; set; } = new List<Photo>();
+
+  private async Task HandleAlbumChange()
+  {
+    AlbumPhotos = await _client.GetFromJsonAsync<IEnumerable<Photo>>($"https://jsonplaceholder.typicode.com/photos?albumId={AlbumId}");
+  }
+}

@@ -1,0 +1,11 @@
+﻿<div class="box">
+  <p>@Photo.Id</p>
+  <figure class="image is-64x64">
+    <img src="@Photo.ThumbnailUrl" />
+  </figure>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public Photo Photo { get; set; }
+}
