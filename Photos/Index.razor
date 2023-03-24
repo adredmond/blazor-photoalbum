@@ -21,7 +21,7 @@
 @code {
   public int AlbumId { get; set; }
 
-  public IEnumerable<Photo> AlbumPhotos { get; set; } = new List<Photo>();
+  public IEnumerable<Photo> AlbumPhotos { get; set; } = Enumerable.Empty<Photo>();
 
   private async Task HandleAlbumChange()
   {
