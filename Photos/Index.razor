@@ -23,6 +23,7 @@
       <label for="album-id-input" class="label">Select an album to view its photos</label>
       <input id="album-id-input"
              type="number"
+             min="1"
              class="input m-2 is-rounded is-normal"
              @bind="AlbumId"
              @bind:after="HandleAlbumChange"/>
