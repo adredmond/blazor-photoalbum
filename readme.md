@@ -8,10 +8,10 @@ This project uses [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-ap
 
 
 For local testing of the project, `dotnet cli` or Visual Studio can be used.
-### Visual Studio
-Load the project and select the preferred launch configuration.
 ### Dotnet CLI
 Run the command `dotnet run` and open the web browser to the URL provided in output.
+### Visual Studio
+Load the project and select the preferred launch configuration.
 
 
 ## Useful Links
