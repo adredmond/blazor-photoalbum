@@ -23,10 +23,8 @@
 
   public IEnumerable<Photo> AlbumPhotos { get; set; } = Enumerable.Empty<Photo>();
 
-  private async Task HandleAlbumChange()
-  {
-    AlbumPhotos = await _client.GetFromJsonAsync<IEnumerable<Photo>>($"https://jsonplaceholder.typicode.com/photos?albumId={AlbumId}");
-  }
+    private async Task HandleAlbumChange() => AlbumPhotos = await _client.GetFromJsonAsync<IEnumerable<Photo>>($"https://jsonplaceholder.typicode.com/photos?albumId={AlbumId}") 
+        ?? Enumerable.Empty<Photo>();
 
   protected override async Task OnInitializedAsync() => await HandleAlbumChange();
 }
