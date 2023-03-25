@@ -1,10 +1,19 @@
-﻿<h3>Displaying Photos for Album @AlbumId</h3>
-
-@if (!@Photos.Any())
+﻿@if (@Photos.Any())
 {
-    <h3>No Photos found</h3> 
+    <article class="message is-primary">
+        <div class="message-body">
+            Viewing @Photos.Count() photos from album @AlbumId.
+        </div>
+  </article>
 }
-
+else
+{
+    <article class="message is-dark">
+        <div class="message-body">
+            No photos found for album @AlbumId.
+        </div>
+    </article>
+}
 <div id="photogrid">
 @foreach (var photo in Photos)
 {

@@ -43,6 +43,8 @@ h1:focus {
     max-width: 30%;
     min-width: 20%;
     flex: none;
+
+    border: 1px solid #f0f0f5;
 }
 
 .card-image {

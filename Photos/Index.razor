@@ -4,27 +4,49 @@
 
 <PageTitle>Photo Album Viewer</PageTitle>
 
-<div class="columns">
-  <div class="column is-one-quarter">
-    <label for="album-id-input" class="label">Select an Album to View</label>
-    <input id="album-id-input"
-           type="number"
-           class="input is-rounded"
-           @bind="AlbumId"
-           @bind:after="HandleAlbumChange"/>
-  </div>
-  <div class="column">
+<section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title">
+            Photo Viewer
+        </p>
+        <p class="subtitle">
+            Powered by <a href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a>
+        </p>
+    </div>
+
+</section>
+
+<section class="columns m-1">
+  <section class="column is-one-quarter">
+    <article>
+
+      <label for="album-id-input" class="label">Select an album to view its photos</label>
+      <input id="album-id-input"
+             type="number"
+             class="input m-2 is-rounded is-normal"
+             @bind="AlbumId"
+             @bind:after="HandleAlbumChange"/>
+    </article>
+
+    <article class="message">
+        <div class="message-body">
+            <em>Clicking on a thumbnail image will preview the full sized image.</em>
+        </div>
+    </article>
+  </section>
+
+  <section class="column">
     <PhotoGrid AlbumId="AlbumId" Photos="AlbumPhotos" />
-  </div>
+  </section>
 
-</div>
+</section>
 @code {
-  public int AlbumId { get; set; } = 1;
+    public int AlbumId { get; set; } = 1;
 
-  public IEnumerable<Photo> AlbumPhotos { get; set; } = Enumerable.Empty<Photo>();
+    public IEnumerable<Photo> AlbumPhotos { get; set; } = Enumerable.Empty<Photo>();
 
     private async Task HandleAlbumChange() => AlbumPhotos = await _client.GetFromJsonAsync<IEnumerable<Photo>>($"https://jsonplaceholder.typicode.com/photos?albumId={AlbumId}") 
         ?? Enumerable.Empty<Photo>();
 
-  protected override async Task OnInitializedAsync() => await HandleAlbumChange();
+    protected override async Task OnInitializedAsync() => await HandleAlbumChange();
 }
